@@ -1,0 +1,33 @@
+body {
+  display: flex;
+}
+.container {
+  background-color: black;
+  width: 300px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(10, 2fr);
+  grid-template-rows: repeat(15, 2fr);
+}
+.results {
+  background-color: rgb(0, 179, 255);
+  width: 50px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(1, 2fr);
+  grid-template-rows: repeat(15, 2fr);
+}
+
+.item {
+  background-color: white;
+}
+.item,
+.occupied,
+.result {
+  font-size: 30px;
+  text-align: center;
+}
+
+.occupied {
+  background-color: red;
+}
