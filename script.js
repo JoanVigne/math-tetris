@@ -36,17 +36,25 @@ function placeItem(y, x) {
   // NEW LINE
   if (grid[y - 1].every((cell) => cell !== false)) {
     let count = grid[y - 1].reduce((a, b) => Number(a) + Number(b), 0);
-    console.log("in ever ", count);
     const resultline = document.createElement("div");
     resultline.innerText = count;
     resultline.classList.add("result");
     resultline.style.gridRowStart = y;
     resultsContainer.appendChild(resultline);
+    //! IF ROW IS 50
     if (count === 50) {
-      for (let i = 0; i < grid.length; i++) {
+      /*       for (let i = 0; i < grid.length; i++) {
         grid[i] = grid[i].map(() => false);
+      } */
+      for (let i = y; i < grid.length; i++) {
+        if (i - 1 !== false) {
+          grid[i] = [...grid[i - 1]];
+        } else {
+          grid[i] = grid[i].map(() => false);
+        }
       }
-      for (let i = 0; i < grid[y - 1].length; i++) {
+      // to remove the line
+      /* for (let i = 0; i < grid[y - 1].length; i++) {
         const cell = document.querySelector(
           `.occupied[style*="grid-column-start: ${
             i + 1
@@ -55,43 +63,15 @@ function placeItem(y, x) {
         if (cell) {
           cell.remove();
         }
-      }
+      } */
+      // Shift all rows above the deleted row down by one
     }
+    //! IF ROW IS 50 end
   }
 
   createACube();
 }
 createACube();
-function positionInTheGrid(y, x) {
-  grid[y - 1][x - 1] = true;
-}
-
-document.addEventListener("keydown", function (event) {
-  const activeItem = document.querySelector(".item");
-  let x = Number(activeItem.style.gridColumnStart);
-  let y = Number(activeItem.style.gridRowStart);
-  if (event.key === "ArrowUp") {
-    /*  if (grid[y - 1][x - 1]) {
-      console.log("taken");
-    } */
-    /*   activeItem.style.gridRowStart = --y; */
-  } else if (event.key === "ArrowDown") {
-    if (y < 15 && grid[y][x - 1]) {
-      console.log("taken");
-      placeItem(y, x);
-      return;
-    }
-    if (y === 15) {
-      placeItem(y, x);
-      return;
-    }
-    activeItem.style.gridRowStart = ++y;
-  } else if (event.key === "ArrowLeft") {
-    activeItem.style.gridColumnStart = --x;
-  } else if (event.key === "ArrowRight") {
-    activeItem.style.gridColumnStart = ++x;
-  }
-});
 
 function lost() {
   alert("You lost the game");

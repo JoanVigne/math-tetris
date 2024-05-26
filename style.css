@@ -24,6 +24,7 @@ body {
 .item,
 .occupied,
 .result {
+  border-top: 3px white solid;
   font-size: 30px;
   text-align: center;
 }
