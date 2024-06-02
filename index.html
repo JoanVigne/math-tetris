@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <title>square tetris</title>
   </head>
   <body>
@@ -14,15 +18,34 @@
       <div class="container"></div>
       <span class="results"></span>
       <div class="scoreContainer">
-        <h2>Score</h2>
-        <span class="score">15</span>
-        <p>
-          ici une sorte d'animation de remplissage ou des animations purement
-          estetique
-        </p>
+        <div class="pointContainer">
+          <span class="score">15</span><span>pts</span>
+        </div>
+        <div class="levelContainer">
+          <span>LVL</span><span class="level">1</span>
+        </div>
+        <div class="remplissageContainer">
+          <div class="remplissage"></div>
+        </div>
+      </div>
+      <div>
+        <i class="fas fa-play sound"></i>
+
+        <label for="volume"></label>
+        <i class="fas fa-volume-up"></i>
+        <input
+          type="range"
+          id="volume"
+          name="volume"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.5"
+        />
       </div>
     </main>
   </body>
   <script src="script.js"></script>
   <script src="./js/keyboardListener.js"></script>
+  <script src="./js/sounds.js"></script>
 </html>

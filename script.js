@@ -1,8 +1,12 @@
 const container = document.querySelector(".container");
+
 const resultsContainer = document.querySelector(".results");
 // size of the game : 15 - 10
 const grid = Array.from({ length: 15 }, () => Array(10).fill(false));
 const scoreContainer = document.querySelector(".score");
+const remplissage = document.querySelector(".remplissage");
+const levelContainer = document.querySelector(".level");
+let level = 1;
 let score = 0;
 function createACube() {
   const cube = document.createElement("div");
@@ -54,7 +58,17 @@ function placeItem(y, x) {
       console.log("row is equal to 50");
       score = score + count;
       scoreContainer.innerText = score;
-
+      // REMPLISSAGE DU PASSAGE DE NIVEAU
+      let remplissageHeight = window.getComputedStyle(remplissage).height;
+      let remplissageHeightAfter = parseInt(remplissageHeight) + count;
+      if (remplissageHeightAfter >= 300) {
+        level++;
+        console.log("level : ", level);
+        levelContainer.innerText = level;
+        remplissage.style.height = remplissageHeightAfter - 300 + "px";
+      } else {
+        remplissage.style.height = remplissageHeightAfter + count + "px";
+      }
       /*       for (let i = 0; i < grid.length; i++) {
         grid[i] = grid[i].map(() => false);
       } */
